@@ -70,12 +70,13 @@ class _HomepageState extends State<Homepage> {
                 return ListView.builder(
                     itemCount: data?.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        height: 75,
-                        color: Colors.white,
-                        child: Center(
+                      return ListTile(
+                        tileColor: Colors.blueGrey[400],
+                        leading: FlutterLogo(),
+                        title: Center(
                           child: Text(data![index].title),
                         ),
+                        trailing: Icon(Icons.more_vert),
                       );
                     });
               } else if (snapshot.hasError) {

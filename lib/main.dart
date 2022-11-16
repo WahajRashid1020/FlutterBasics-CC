@@ -25,10 +25,12 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(initialRoute: "/", routes: {
-      '/': (context) => Homepage(),
+      '/': (context) => const PageOne(),
       '/second': (context) => const PageTwo(),
       '/login': (context) => const PageThree(),
       '/fourth': (context) => const BasicStatefull(),
+      '/multiple': (context) => Homepage(),
+      '/single': (context) => const Myapi(),
     });
   }
 }
