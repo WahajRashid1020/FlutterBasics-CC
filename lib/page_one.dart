@@ -39,6 +39,15 @@ class PageOne extends StatelessWidget {
                         },
                         child: Text("Fetch Multiple Data"),
                       ))),
+              Center(
+                  child: Container(
+                      padding: EdgeInsets.only(top: 40),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/card');
+                        },
+                        child: Text("Card"),
+                      ))),
             ],
           ),
         )

@@ -1,6 +1,7 @@
 import 'package:example/basic_statefull.dart';
 import 'package:example/homepage.dart';
 import 'package:example/myapi.dart';
+import 'package:example/mycard.dart';
 import 'package:example/page_one.dart';
 import 'package:example/page_three.dart';
 import 'package:example/page_two.dart';
@@ -30,7 +31,7 @@ class MyAppState extends State<MyApp> {
       '/login': (context) => const PageThree(),
       '/fourth': (context) => const BasicStatefull(),
       '/multiple': (context) => Homepage(),
-      '/single': (context) => const Myapi(),
+      '/card': (context) => const Mycard(),
     });
   }
 }

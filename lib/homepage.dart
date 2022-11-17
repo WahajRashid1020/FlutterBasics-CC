@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:example/myapi.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 //LIST  DATA
 Future<List<Data>> fetchData() async {
   final response =
-      await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums'));
+      await http.get(Uri.parse('https://fakestoreapi.com/products'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => new Data.fromJson(data)).toList();
@@ -16,19 +17,19 @@ Future<List<Data>> fetchData() async {
 }
 
 class Data {
-  final int userId;
+  final double price;
   final int id;
   final String title;
 
   const Data({
-    required this.userId,
+    required this.price,
     required this.id,
     required this.title,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      userId: json['userId'],
+      price: json['price'],
       id: json['id'],
       title: json['title'],
     );
@@ -71,6 +72,21 @@ class _HomepageState extends State<Homepage> {
                     itemCount: data?.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Myapi(
+                                    id: data[index].id,
+                                    title: data[index].title,
+                                    price: data[index].price,
+                                  )),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          //<-- SEE HERE
+                          side: BorderSide(width: 2, color: Colors.white),
+
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         tileColor: Colors.blueGrey[400],
                         leading: FlutterLogo(),
                         title: Center(
@@ -91,3 +107,21 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
+// showDialog<String>(
+//                           context: context,
+//                           builder: (BuildContext context) => AlertDialog(
+//                             title: Text(data![index].title),
+//                             content: const Text('AlertDialog description'),
+//                             actions: <Widget>[
+//                               TextButton(
+//                                 onPressed: () =>
+//                                     Navigator.pop(context, 'Cancel'),
+//                                 child: const Text('Cancel'),
+//                               ),
+//                               TextButton(
+//                                 onPressed: () => Navigator.pop(context, 'OK'),
+//                                 child: const Text('OK'),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
